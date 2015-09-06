@@ -21,6 +21,7 @@
   :source-paths ["src/clj"]
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
+                             :figwheel true
                              :compiler {:output-dir    "resources/public/js"
                                         :output-to     "resources/public/js/app.js"
                                         ;; :source-map    "resources/public/js/out.js.map"

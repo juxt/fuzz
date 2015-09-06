@@ -12,3 +12,10 @@
       (handler route-params))))
 
 (route)
+
+
+;; TODO hiccups
+;; TODO dommy
+;; Core Async
+;; React
+;; Fighwheel
