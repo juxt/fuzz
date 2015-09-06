@@ -1,11 +1,13 @@
 (defproject fuzz "0.1.0-SNAPSHOT"
   :description "Example ClojureScript Project, code-name fuzz"
-  :url "http://example.com/FIXME"
+  :url "https://github.com/juxt/fuzz"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.48" :scope "provided"]
+                 [com.stuartsierra/component "0.2.2"]
 
+                 [compojure "1.4.0"]
                  [org.webjars.bower/material-design-lite "1.0.4"]
 
                  [bidi "1.20.3"]
@@ -15,6 +17,8 @@
 
                  [juxt.modular/http-kit "0.5.4"]]
 
+  :resource-paths ["resources"]
+
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
                              :compiler {:output-to     "resources/public/js/app.js"
                                         :output-dir    "resources/public/js/out"
@@ -23,7 +27,9 @@
                                         :optimizations :none
                                         :pretty-print  true}}}}
 
-  :profiles {:dev {:plugins [[lein-figwheel "0.3.9" ;; :exclusions [org.clojure/clojure
+  :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
+                   :source-paths ["dev"]
+                   :plugins [[lein-figwheel "0.3.9" ;; :exclusions [org.clojure/clojure
                                                     ;;               org.apache.httpcomponents/httpclient
                                                     ;;               org.apache.httpcomponents/httpcore
                                                     ;;               commons-codec
