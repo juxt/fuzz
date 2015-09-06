@@ -1,10 +1,16 @@
 # fuzz
 
-A Clojure library designed to ... well, that part is up to you.
+Sample minimalist ClojureScript project using Google Material Designs.
 
 ## Usage
 
-FIXME
+Repl in, do
+
+`(dev)`
+
+`(reset)`
+
+Visit port 8080.
 
 ## License
 

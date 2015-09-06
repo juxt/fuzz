@@ -18,6 +18,7 @@
                  [juxt.modular/http-kit "0.5.4"]]
 
   :resource-paths ["resources"]
+  :source-paths ["src/clj"]
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
                              :compiler {:output-to     "resources/public/js/app.js"
