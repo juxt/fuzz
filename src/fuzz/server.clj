@@ -9,6 +9,11 @@
 (defroutes routes
   (resources "/")
 
+  (GET "/static/*" []
+       (br/make-handler
+        ["/static/"
+         [["mdl" (br/resources {:prefix "META-INF/resources/webjars/material-design-lite/1.0.4"})]]]))
+
   #_(GET "/*" []
        (br/make-handler
         ["/"
