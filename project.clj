@@ -21,19 +21,22 @@
   :source-paths ["src/clj"]
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
-                             :compiler {:output-to     "resources/public/js/app.js"
-                                        :output-dir    "resources/public/js/out"
-                                        :source-map    "resources/public/js/out.js.map"
-                                        :preamble      ["react/react.min.js"]
+                             :compiler {:output-dir    "resources/public/js"
+                                        :output-to     "resources/public/js/app.js"
+                                        ;; :source-map    "resources/public/js/out.js.map"
+                                        ;;:preamble      ["react/react.min.js"]
+                                        :asset-path "/js"
+                                        :main           "fuzz.app"
                                         :optimizations :none
                                         :pretty-print  true}}}}
 
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
                    :source-paths ["dev"]
-                   :plugins [[lein-figwheel "0.3.9" ;; :exclusions [org.clojure/clojure
-                                                    ;;               org.apache.httpcomponents/httpclient
-                                                    ;;               org.apache.httpcomponents/httpcore
-                                                    ;;               commons-codec
-                                                    ;;              org.codehaus.plexus/plexus-utils]
+                   :plugins [[lein-cljsbuild "1.1.0"]
+                             [lein-figwheel "0.3.9" :exclusions [org.clojure/clojure
+                                                                  org.apache.httpcomponents/httpclient
+                                                                  org.apache.httpcomponents/httpcore
+                                                                  commons-codec
+                                                                 org.codehaus.plexus/plexus-utils]
                               ]]
                    :figwheel {:css-dirs ["resources/public/css"]}}})
