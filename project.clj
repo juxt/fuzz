@@ -18,7 +18,8 @@
                  [juxt.modular/http-kit "0.5.4"]
 
                  [prismatic/dommy "1.1.0"]
-                 [hiccups "0.3.0"]]
+                 [hiccups "0.3.0"]
+                 [cljsjs/mustache "1.1.0-0"]]
 
   :resource-paths ["resources"]
   :source-paths ["src/clj"]
