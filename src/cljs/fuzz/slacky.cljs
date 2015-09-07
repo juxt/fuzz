@@ -13,7 +13,7 @@
                                                                          "channel" "C0522EZ9N"
                                                                          "oldest" (str latest)}})))]
         (doseq [{:keys [text] :as message} (sort-by :ts messages)]
-          (<! (timeout 100))
+          (<! (timeout 50))
           (>! msg-chan text))
         (<! (timeout 1100))
         (recur (or (apply max (map :ts messages)) latest))))

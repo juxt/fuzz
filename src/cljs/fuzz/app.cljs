@@ -7,6 +7,7 @@
             [fuzz.mustache :as mustache]
             [fuzz.async-dommy :as async-dommy]
             [fuzz.slacky-dommy :as slacky-dommy]
+            [fuzz.om-slacky :as om-slacky]
             [fuzz.nav]))
 
 (enable-console-print!)
@@ -17,12 +18,13 @@
             ["hiccups" hiccups/handler]
             ["mustache" mustache/handler]
             ["async-dommy" async-dommy/handler]
-            ["slacky-dommy" slacky-dommy/handler]])
+            ["slacky-dommy" slacky-dommy/handler]
+            ["slacky-om" om-slacky/handler]])
 
 (defn pages [] ["/fuzz/" frags])
 
 (defn route []
-  (let [target-container (. js/document (getElementById "roc-container"))
+  (let [target-container (. js/document (getElementById "container"))
         location (not-empty (-> js/document .-location .-pathname))]
     (if-let [{:keys [handler route-params]} (and location (bidi/match-route (pages) location))]
       (handler target-container route-params)
