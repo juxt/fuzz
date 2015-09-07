@@ -15,7 +15,10 @@
                  [org.omcljs/om "0.9.0"]
                  [sablono "0.3.4" :exclusions [cljsjs/react]]
 
-                 [juxt.modular/http-kit "0.5.4"]]
+                 [juxt.modular/http-kit "0.5.4"]
+
+                 ;; Painting
+                 [prismatic/dommy "1.1.0"]]
 
   :resource-paths ["resources"]
   :source-paths ["src/clj"]
