@@ -6,8 +6,6 @@
             [hiccups.runtime]
             [dommy.core :as dommy :refer-macros [sel1]]))
 
-(def messages (atom #{}))
-
 (defn- original-snippet [s]
   (str "<div class='juxt-div' id=\"slack-messages\"><h1>" s "</h1></div>"))
 
