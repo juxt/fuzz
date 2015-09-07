@@ -19,7 +19,7 @@
   (go-loop [latest nil]
     (when-let [{:keys [messages]} (:body (<! (http/get "https://slack.com/api/channels.history"
                                                        {:with-credentials? false
-                                                        :query-params {"token" "<INSERT HERE>"
+                                                        :query-params {"token" js/slackToken
                                                                        "channel" "C0522EZ9N"
                                                                        "oldest" (str latest)}})))]
       (doseq [{:keys [text] :as message} (sort-by :ts messages)]

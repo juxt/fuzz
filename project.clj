@@ -6,6 +6,8 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.48" :scope "provided"]
                  [com.stuartsierra/component "0.2.2"]
+                 [stencil "0.5.0"]
+                 [environ "1.0.0"]
 
                  [compojure "1.4.0"]
                  [org.webjars.bower/material-design-lite "1.0.4"]
@@ -38,6 +40,6 @@
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
                    :source-paths ["dev"]
                    :plugins [[lein-cljsbuild "1.1.0"]
-                             [lein-figwheel "0.3.9"
-                              ]]
+                             [lein-figwheel "0.3.9"]
+                             [lein-environ "1.0.0"]]
                    :figwheel {:css-dirs ["resources/public/css"]}}})
