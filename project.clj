@@ -11,6 +11,7 @@
                  [org.webjars.bower/material-design-lite "1.0.4"]
 
                  [bidi "1.20.3"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
 
                  [org.omcljs/om "0.9.0"]
                  [sablono "0.3.4" :exclusions [cljsjs/react]]
@@ -28,8 +29,6 @@
                              :figwheel true
                              :compiler {:output-dir    "resources/public/js"
                                         :output-to     "resources/public/js/app.js"
-                                        ;; :source-map    "resources/public/js/out.js.map"
-                                        ;;:preamble      ["react/react.min.js"]
                                         :asset-path "/js"
                                         :main           "fuzz.app"
                                         :optimizations :none
@@ -38,10 +37,6 @@
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
                    :source-paths ["dev"]
                    :plugins [[lein-cljsbuild "1.1.0"]
-                             [lein-figwheel "0.3.9" :exclusions [org.clojure/clojure
-                                                                  org.apache.httpcomponents/httpclient
-                                                                  org.apache.httpcomponents/httpcore
-                                                                  commons-codec
-                                                                 org.codehaus.plexus/plexus-utils]
+                             [lein-figwheel "0.3.9"
                               ]]
                    :figwheel {:css-dirs ["resources/public/css"]}}})
