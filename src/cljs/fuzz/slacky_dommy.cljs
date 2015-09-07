@@ -4,6 +4,7 @@
   (:require [cljs.core.async :refer [timeout <!]]
             [cljs-http.client :as http]
             [hiccups.runtime]
+            [fuzz.slacky :as slacky]
             [dommy.core :as dommy :refer-macros [sel1]]))
 
 (defn- original-snippet [s]
@@ -16,14 +17,9 @@
 (defn handler [_ _]
   (dommy/set-html! (sel1 :#container) (original-snippet "Waiting"))
 
-  (go-loop [latest nil]
-    (when-let [{:keys [messages]} (:body (<! (http/get "https://slack.com/api/channels.history"
-                                                       {:with-credentials? false
-                                                        :query-params {"token" js/slackToken
-                                                                       "channel" "C0522EZ9N"
-                                                                       "oldest" (str latest)}})))]
-      (doseq [{:keys [text] :as message} (sort-by :ts messages)]
+  (let [slacky-msg-chan (slacky/poll-slacky)]
+    (go-loop []
+      (when-let [msg (<! slacky-msg-chan)]
         (dommy/prepend! (sel1 :#slack-messages)
-                        (dommy/set-html! (dommy/create-element :p) text)))
-      (<! (timeout 1100))
-      (recur (or (apply max (map :ts messages)) latest)))))
+                        (dommy/set-html! (dommy/create-element :p) msg))
+        (recur)))))
