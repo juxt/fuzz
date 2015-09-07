@@ -17,8 +17,8 @@
 
                  [juxt.modular/http-kit "0.5.4"]
 
-                 ;; Painting
-                 [prismatic/dommy "1.1.0"]]
+                 [prismatic/dommy "1.1.0"]
+                 [hiccups "0.3.0"]]
 
   :resource-paths ["resources"]
   :source-paths ["src/clj"]
