@@ -1,6 +1,14 @@
 # fuzz
 
-Sample minimalist ClojureScript project using Google Material Designs.
+Sample minimalist ClojureScript project using Google Material Designs. Demonstrates
+
++ js interopt
++ Dommy
++ Hiccups
++ Mustache.js
++ Core.Async
++ Om/React
++ clj-http
 
 ## Usage
 
