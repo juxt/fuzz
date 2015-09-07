@@ -17,6 +17,7 @@
                  [cljs-http "0.1.37"]
 
                  [org.omcljs/om "0.9.0"]
+                 [prismatic/om-tools "0.3.11"]
                  [sablono "0.3.4" :exclusions [cljsjs/react]]
 
                  [juxt.modular/http-kit "0.5.4"]

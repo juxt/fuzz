@@ -3,17 +3,21 @@
             [compojure.route :refer [resources]]
             [modular.ring :refer [WebRequestHandler]]
             [stencil.core :refer [render-file]]
+            [stencil.loader]
+            [clojure.core.cache]
             [environ.core :refer [env]]
             [bidi
              [bidi :as b]
              [ring :as br]]))
 
+(stencil.loader/set-cache (clojure.core.cache/ttl-cache-factory {} :ttl 0))
+
 (defroutes routes
   (GET "/" []
        {:status 302
-        :headers {"Location" "/index.html#hello"}})
+        :headers {"Location" "/fuzz/hello"}})
 
-  (GET "/index.html" []
+  (GET "/fuzz/*" []
        (render-file "public/index.html" {:slack-token (env :slack-token)}))
 
   (resources "/")
