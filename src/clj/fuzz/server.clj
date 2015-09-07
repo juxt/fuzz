@@ -12,22 +12,7 @@
   (GET "/static/*" []
        (br/make-handler
         ["/static/"
-         [["mdl" (br/resources {:prefix "META-INF/resources/webjars/material-design-lite/1.0.4"})]]]))
-
-  #_(GET "/*" []
-       (br/make-handler
-        ["/"
-         [[(b/alts "index.html" "") (fn [req] (found "/platform/index.html#home"))]
-          ;; Global cljs source base
-          ["js" (br/resources {:prefix "js"})]
-          ["platform" [["/css" (br/resources-maybe {:prefix "css"})]
-
-                       ;; Only bring in resources from the platform subdirectory
-                       ;; TODO better explain what the point of this is
-                       ["" (br/resources {:prefix "platform"})]]]
-
-          ["events" (fn [{:keys [outgoing-events] :as request}]
-                      (outgoing-events/handle-sse outgoing-events request))]]])))
+         [["mdl" (br/resources {:prefix "META-INF/resources/webjars/material-design-lite/1.0.4"})]]])))
 
 (defrecord RequestHandler []
   WebRequestHandler

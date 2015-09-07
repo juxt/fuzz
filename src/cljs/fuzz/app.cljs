@@ -5,7 +5,8 @@
             [fuzz.dommy-hello2 :as dommy-hello2]
             [fuzz.hiccups :as hiccups]
             [fuzz.mustache :as mustache]
-            [fuzz.async-dommy :as async-dommy]))
+            [fuzz.async-dommy :as async-dommy]
+            [fuzz.slacky-dommy :as slacky-dommy]))
 
 (enable-console-print!)
 
@@ -14,7 +15,8 @@
                      ["hello-dommy2" dommy-hello2/handler]
                      ["hiccups" hiccups/handler]
                      ["mustache" mustache/handler]
-                     ["async-dommy" async-dommy/handler]]])
+                     ["async-dommy" async-dommy/handler]
+                     ["slacky-dommy" slacky-dommy/handler]]])
 
 (defn route []
   (let [target-container (. js/document (getElementById "roc-container"))

@@ -12,6 +12,7 @@
 
                  [bidi "1.20.3"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [cljs-http "0.1.37"]
 
                  [org.omcljs/om "0.9.0"]
                  [sablono "0.3.4" :exclusions [cljsjs/react]]
