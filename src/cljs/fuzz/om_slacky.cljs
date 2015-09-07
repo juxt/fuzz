@@ -22,3 +22,11 @@
       (when-let [msg (<! slacky-msg-chan)]
         (swap! app-state update-in [:messages] conj msg)
         (recur)))))
+
+
+
+
+
+
+
+;; Figwheel - look at atom, inject into it
