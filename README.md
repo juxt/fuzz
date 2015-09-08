@@ -1,9 +1,12 @@
 # fuzz
 
-Sample minimalist ClojureScript project using Google Material Designs. Demonstrates
+Sample minimalist ClojureScript project using Google Material Designs.
+
+Has handlers demonstrating a range of tech from the ClojureScript ecosystem.
 
 + Basic Ring/HttpKit, ClojureScript integration
 + Figwheel
++ cljsbuild
 + js interopt
 + Dommy
 + Hiccups
@@ -25,7 +28,7 @@ Visit port 8080.
 
 Expose `:slack-token` via environ to run the Slack functionality.
 
-Run `(send-msg "foo")` from the REPL to send a message to the ldnclj channel.
+Run `(send-msg "foo")` from the REPL to send a message to the #ldnclj channel.
 
 ## License
 

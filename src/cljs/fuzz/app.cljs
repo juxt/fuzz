@@ -41,6 +41,3 @@
 
 (fuzz.nav/init frags)
 (route)
-
-;; Todo, defo so SSE (or websockets, using Chord?) Should be easy enough, push from the repl
-;; We need a form, perhaps a form to add a name, that goes to a list, comes back through a websocket
