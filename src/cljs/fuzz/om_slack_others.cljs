@@ -6,7 +6,21 @@
             [om.core :as om :include-macros true]
             [fuzz.om-slacky-component :refer [OmSlacky]]))
 
-(defonce app-state (atom {:slacky {:messages []}}))
+(defonce app-state (atom {:slacky {:messages []}
+                          :slacky-form {:message ""}}))
+
+(defcomponent OmSlackyForm [{:keys [message] :as data} owner]
+  (render [this]
+    (html
+     [:div.form
+      [:div.mdl-textfield.mdl-js-textfield
+       [:input#msg.mdl-textfield__input {:type :text :value message :on-change
+                                         (fn [e]
+                                           (om/update! data :message (.. e -target -value)))}]]
+      [:button.mdl-button {:on-click
+                           (fn [_]
+                             (slacky/send! message)
+                             (om/update! data :message ""))} "Send"]])))
 
 (defcomponent OmSlackyCount [{:keys [messages] :as data} owner]
   (render [this]
@@ -25,6 +39,7 @@
     (html
      [:div.juxt-div.mdl-grid
       [:div.mdl-cell.mdl-cell--7-col
+       (om/build OmSlackyForm (:slacky-form data))
        (om/build OmSlacky (:slacky data) {})]
       [:div.mdl-cell.mdl-cell--5-col
        (om/build OmSlackyCount (:slacky data) {})]])))
