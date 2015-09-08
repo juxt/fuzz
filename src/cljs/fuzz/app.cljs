@@ -10,6 +10,7 @@
             [fuzz.om-slacky :as om-slacky]
             [fuzz.om-slacky-component :as om-slacky-component]
             [fuzz.om-raw-slacky-component :as om-raw-slacky-component]
+            [fuzz.om-simple :as om-simple]
             [fuzz.nav]))
 
 (enable-console-print!)
@@ -23,7 +24,8 @@
             ["slacky-dommy" slacky-dommy/handler]
             ["slacky-om" om-slacky/handler]
             ["slacky-om-component" om-slacky-component/handler]
-            ["slacky-raw-om-component" om-raw-slacky-component/handler]])
+            ["slacky-raw-om-component" om-raw-slacky-component/handler]
+            ["om-simple" om-simple/handler]])
 
 (defn pages [] ["/fuzz/" frags])
 

@@ -5,26 +5,28 @@
             [fuzz.slacky :as slacky]
             [om.core :as om :include-macros true]))
 
-(def app-state (atom {:slacky {:messages []}}))
+(defonce app-state (atom {:slacky {:messages []}}))
 
-(defcomponent OmSlacky [{:keys [messages] :as data} owner]
+(defcomponent OmSlacky [{:keys [messages slacky-chan] :as data} owner]
   (will-mount [this]
-    (let [slacky-msg-chan (slacky/poll-slacky)]
-      (go-loop []
-        (when-let [msg (<! slacky-msg-chan)]
-          (om/transact! data :messages #(conj % msg)))
-        (recur))))
+    (when-not slacky-chan
+      (let [slacky-msg-chan (slacky/poll-slacky)]
+        (go-loop []
+          (when-let [msg (<! slacky-msg-chan)]
+            (om/transact! data :messages #(conj % msg)))
+          (recur))
+        (om/update! data :slacky-chan slacky-msg-chan))))
 
   (render [this]
     (html
-     [:div.juxt-div
+     [:div
       (for [m (reverse messages)]
         [:p m])])))
 
 (defcomponent OmRoot [data owner]
   (render [this]
     (html
-     [:div
+     [:div.juxt-div
       (om/build OmSlacky (:slacky data) {})])))
 
 (defn handler [target opts]

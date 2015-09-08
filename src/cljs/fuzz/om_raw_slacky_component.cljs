@@ -21,7 +21,7 @@
     om/IRender
     (render [this]
       (html
-       [:div.juxt-div
+       [:div
         (for [m (reverse messages)]
           [:p m])]))))
 
@@ -31,7 +31,7 @@
     om/IRender
     (render [this]
       (html
-       [:div
+       [:div.juxt-div
         (om/build om-slacky (:slacky data) {})]))))
 
 (defn handler [target opts]
