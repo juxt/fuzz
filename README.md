@@ -11,6 +11,7 @@ Sample minimalist ClojureScript project using Google Material Designs. Demonstra
 + Core.Async
 + Om/React
 + clj-http
++ Server sent events
 
 ## Usage
 
@@ -23,6 +24,8 @@ Repl in, do
 Visit port 8080.
 
 Expose `:slack-token` via environ to run the Slack functionality.
+
+Run `(send-msg "foo")` from the REPL to send a message to the ldnclj channel.
 
 ## License
 
