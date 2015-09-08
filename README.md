@@ -2,6 +2,8 @@
 
 Sample minimalist ClojureScript project using Google Material Designs. Demonstrates
 
++ Basic Ring/HttpKit, ClojureScript integration
++ Figwheel
 + js interopt
 + Dommy
 + Hiccups
