@@ -9,3 +9,11 @@
 a {
     color: white;
 }
+
+.news-card  {
+    background: #3E4EB8;
+}
+
+h2.mdl-card__title-text {
+    color: white;
+}

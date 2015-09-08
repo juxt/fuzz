@@ -38,6 +38,8 @@
                                         :optimizations :none
                                         :pretty-print  true}}}}
 
+  :figwheel {:css-dirs ["resources/public/css"]}
+
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
                    :source-paths ["dev"]
                    :plugins [[lein-cljsbuild "1.1.0"]
