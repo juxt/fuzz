@@ -3,6 +3,7 @@
             [compojure.route :refer [resources]]
             [modular.ring :refer [WebRequestHandler]]
             [stencil.core :refer [render-file]]
+            [fuzz.sse :as sse]
             [stencil.loader]
             [clojure.core.cache]
             [environ.core :refer [env]]
@@ -25,12 +26,19 @@
   (GET "/static/*" []
        (br/make-handler
         ["/static/"
-         [["mdl" (br/resources {:prefix "META-INF/resources/webjars/material-design-lite/1.0.4"})]]])))
+         [["mdl" (br/resources {:prefix "META-INF/resources/webjars/material-design-lite/1.0.4"})]]]))
+
+  (GET "/events" {:keys [sse] :as request}
+       (sse/handle-sse sse request)))
+
+(defn- wrap-system-components [handler deps]
+  (fn [req]
+    (handler (merge req deps))))
 
 (defrecord RequestHandler []
   WebRequestHandler
   (request-handler [{:keys [postgres] :as this}]
-    routes))
+    (-> routes (wrap-system-components this))))
 
 (defn new-handler []
   (->RequestHandler))

@@ -46,3 +46,12 @@
 
 (defn handler [target opts]
   (om/root OmRoot app-state {:target target}))
+
+(defonce sse-listener
+  (let [es (new js/EventSource "/events")]
+    (.addEventListener
+     es "message"
+     (fn [ev]
+       (when-let [m (.-data ev)]
+         (slacky/send! (str m)))))
+    es))

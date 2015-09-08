@@ -1,7 +1,8 @@
 (ns dev
   (:require [fuzz.system]
             [com.stuartsierra.component :as component]
-            [clojure.tools.namespace.repl :refer (refresh refresh-all)]))
+            [clojure.tools.namespace.repl :refer (refresh refresh-all)]
+            [clojure.core.async :refer [>!!]]))
 
 (def system nil)
 
@@ -36,3 +37,6 @@
 (defn reset []
   (stop)
   (refresh :after 'dev/go))
+
+(defn send-msg [msg]
+  (>!! (-> system :sse :ch) msg))
