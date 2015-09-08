@@ -7,12 +7,16 @@
 
 (def app-state (atom {:messages []}))
 
+;; Rendering ---------
+
 (defcomponent OmSlacky [{:keys [messages]} owner]
   (render [this]
     (html
      [:div.juxt-div
       (for [m (reverse messages)]
         [:p m])])))
+
+;; Application -------
 
 (defn handler [target opts]
   (om/root OmSlacky app-state {:target target})
@@ -22,10 +26,6 @@
       (when-let [msg (<! slacky-msg-chan)]
         (swap! app-state update-in [:messages] conj msg)
         (recur)))))
-
-
-
-
 
 
 ;; See notes (atom in fig)

@@ -12,6 +12,7 @@ a {
 
 .news-card  {
     background: #3E4EB8;
+    width: 150px;
 }
 
 h2.mdl-card__title-text {

@@ -25,27 +25,36 @@
 (defcomponent OmSlackyCount [{:keys [messages] :as data} owner]
   (render [this]
     (html
-     [:div.mdl-grid
-      [:div.news-card.mdl-card.mdl-cell.mdl-shadow--2dp
-       [:div.mdl-card__title
-        [:h2.mdl-card__title-text
-         "Messages: "]]
-       [:div.mdl-card__title
-        [:h2.mdl-card__title-text
-         (count messages)]]]])))
+     [:div.news-card.mdl-card.mdl-shadow--2dp
+      [:div.mdl-card__title
+       [:h2.mdl-card__title-text
+        "Messages: "]]
+      [:div.mdl-card__title
+       [:h2.mdl-card__title-text
+        (count messages)]]])))
 
 (defcomponent OmRoot [data owner]
   (render [this]
     (html
      [:div.juxt-div.mdl-grid
-      [:div.mdl-cell.mdl-cell--7-col
+      [:div.mdl-cell.mdl-cell--8-col
        (om/build OmSlackyForm (:slacky-form data))
        (om/build OmSlacky (:slacky data) {})]
-      [:div.mdl-cell.mdl-cell--5-col
+      [:div.mdl-cell.mdl-cell--1-col
        (om/build OmSlackyCount (:slacky data) {})]])))
 
 (defn handler [target opts]
   (om/root OmRoot app-state {:target target}))
+
+
+
+
+
+
+
+
+
+
 
 (defonce sse-listener
   (let [es (new js/EventSource "/events")]
