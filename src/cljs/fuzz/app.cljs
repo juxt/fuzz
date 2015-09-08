@@ -8,6 +8,7 @@
             [fuzz.async-dommy :as async-dommy]
             [fuzz.slacky-dommy :as slacky-dommy]
             [fuzz.om-slacky :as om-slacky]
+            [fuzz.om-slacky-component :as om-slacky-component]
             [fuzz.nav]))
 
 (enable-console-print!)
@@ -19,16 +20,21 @@
             ["mustache" mustache/handler]
             ["async-dommy" async-dommy/handler]
             ["slacky-dommy" slacky-dommy/handler]
-            ["slacky-om" om-slacky/handler]])
+            ["slacky-om" om-slacky/handler]
+            ["slacky-om-component" om-slacky-component/handler]])
 
 (defn pages [] ["/fuzz/" frags])
 
 (defn route []
   (let [target-container (. js/document (getElementById "container"))
         location (not-empty (-> js/document .-location .-pathname))]
+
     (if-let [{:keys [handler route-params]} (and location (bidi/match-route (pages) location))]
       (handler target-container route-params)
       (js/alert "Route not recognised"))))
 
 (fuzz.nav/init frags)
 (route)
+
+;; Todo, defo so SSE (or websockets, using Chord?) Should be easy enough, push from the repl
+;; We need a form, perhaps a form to add a name, that goes to a list, comes back through a websocket

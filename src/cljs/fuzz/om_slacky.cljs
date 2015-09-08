@@ -7,7 +7,7 @@
 
 (def app-state (atom {:messages []}))
 
-(defcomponent ReactSlacky [{:keys [messages]} owner]
+(defcomponent OmSlacky [{:keys [messages]} owner]
   (render [this]
     (html
      [:div.juxt-div
@@ -15,7 +15,7 @@
         [:p m])])))
 
 (defn handler [target opts]
-  (om/root ReactSlacky app-state {:target target})
+  (om/root OmSlacky app-state {:target target})
 
   (let [slacky-msg-chan (slacky/poll-slacky)]
     (go-loop []
@@ -28,5 +28,4 @@
 
 
 
-
-;; Figwheel - look at atom, inject into it
+;; See notes (atom in fig)
