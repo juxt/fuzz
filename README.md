@@ -18,6 +18,10 @@ Has handlers demonstrating a range of tech from the ClojureScript ecosystem.
 
 ## Usage
 
+Fire up figwheel:
+
+`rlwrap lein figwheel`
+
 Repl in, do
 
 `(dev)`
